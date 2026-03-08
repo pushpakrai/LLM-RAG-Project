@@ -1,6 +1,6 @@
 
 <div align="center">
-  <h1>🧠 LLM RAG Demo</h1>
+  <h1>🧠 LLM RAG </h1>
   <h3>Retrieval-Augmented Generation Chatbot with Streamlit</h3>
 
   <p>
