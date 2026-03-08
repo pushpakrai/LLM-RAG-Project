@@ -1,26 +1,107 @@
-In this project, we create a simple Streamlit app to demonstrate an LLM + Retrieval Augmented Generation (RAG) application. The goal is to answer user queries using 
-additional input documents (wiki pages about scientists in our case). The workflow is as follows:
 
-1. Load and index the documents using ChromaDB. The default embedding model is `all-MiniLM-L6-v2`.
-2. Enter the query
-3. The query is used to retrieve the top N documents from the collection (R)
-4. The retrieved documents are re-ranked using the Cross-Encoder model
-5. The top-ranked document(s) are used as a context for the LLM model (AG).
+<div align="center">
+  <h1>🧠 LLM RAG Demo</h1>
+  <h3>Retrieval-Augmented Generation Chatbot with Streamlit</h3>
 
-I utilised the OpenAI API to generate the answers. The model is `gpt-3.5-turbo`. So make sure that your key is available in the environment variable `OPENAI_API_KEY`.
+  <p>
+    <em>A simple yet powerful RAG application that lets you chat with your documents using modern LLMs.</em>
+  </p>
 
-Even though I used a public data source that probably exists in the model itself, the same approach can easily be applied to your own (private) data to extract and answer questions from any documents. 
+  <p>
+    <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+    <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit"/>
+    <img src="https://img.shields.io/badge/LangChain-00BFFF?style=for-the-badge&logoColor=white" alt="LangChain"/>
+    <img src="https://img.shields.io/badge/ChromaDB-FF6F61?style=for-the-badge&logoColor=white" alt="Chroma"/>
+  </p>
+</div>
 
-#### Installing the requirements
+---
 
+### ✨ Features
+
+- 📄 Upload PDFs or text files from your device
+- 🔍 Intelligent document chunking & embedding
+- 🗄️ Vector storage with Chroma
+- 🔄 Re-ranking for improved answer quality
+- 💬 Conversational interface powered by OpenAI / Groq / local models
+- 🔒 Fully local processing possible
+
+### 🛠️ Tech Stack
+
+- **UI** → Streamlit  
+- **RAG Framework** → LangChain / LlamaIndex  
+- **Embeddings** → all-MiniLM-L6-v2 (or OpenAI)  
+- **Vector Store** → Chroma  
+- **LLM** → GPT-3.5-turbo / Groq / Ollama (configurable via .env)  
+- **Python** → 3.10+
+
+### 📂 Project Structure
+
+```
+LLM-RAG-/
+├── src/                # Main application code
+│   └── app.py          # Streamlit entry point
+├── assets/             # Images, icons, custom CSS
+├── data/
+│   └── wiki/           # Sample documents / your files
+├── requirements.txt
+├── README.md
+└── .env.example        # (create this if missing)
+```
+
+### 🚀 Quick Start
+
+1. Clone the repository
 ```bash
+git clone https://github.com/pushpakrai/LLM-RAG-.git
+cd LLM-RAG-
+```
+
+2. Create virtual environment & install dependencies
+```bash
+python -m venv venv
+source venv/bin/activate          # Windows → venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-#### Running the application
+3. Set up environment variables  
+   Create a `.env` file in the root:
+   ```
+   OPENAI_API_KEY=sk-...
+   # OR
+   GROQ_API_KEY=gsk_...
+   # Optional: MODEL_NAME=gpt-3.5-turbo or llama3-70b-8192
+   ```
+
+4. Run the application
 ```bash
-python -m streamlit run app.py
+streamlit run src/app.py
 ```
 
-#### How does it look like?
-![](./assets/lovelace.png)
+Open → http://localhost:8501
+
+---
+
+### 💡 Tips
+
+- Put your documents in `data/` or upload them through the UI
+- First run will download embedding model (~80–100 MB)
+- For faster/larger models → use Groq or local Ollama
+
+### 📌 Future Improvements (Ideas)
+
+- Multi-file / folder upload
+- Persistent vector store
+- Chat history saving
+- Advanced prompt engineering
+- Evaluation metrics (RAGAS / TruLens)
+
+---
+
+<div align="center">
+  <p>⭐ If this project helps you — please give it a star!</p>
+  <p>Contributions, issues, and feature requests are welcome 🚀</p>
+</div>
+the instructions.
+
+Let me know if you want to add screenshots, a demo GIF, deployment instructions (Streamlit Cloud / Hugging Face), or anything else!
